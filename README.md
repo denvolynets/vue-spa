@@ -1,8 +1,13 @@
-# my-project
+# vue-spa
 
 ## Project setup
 ```
 npm install
+```
+
+### Run backend server
+```
+json-server --watch db.json
 ```
 
 ### Compiles and hot-reloads for development
