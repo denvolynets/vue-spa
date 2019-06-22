@@ -1,0 +1,69 @@
+@import './normalized';
+@import './grid';
+@import './global';
+
+body {
+    font-family: $ff_main;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: clr(secondary);
+    color: clr(text, base);
+    font-size: $fsz_main;
+    line-height: $lh_main;
+}
+
+a {
+    color: clr(primary);
+    text-decoration: none;
+    transition: all $trans;
+
+    &:hover {
+        color: clr(primary, light);
+    }
+}
+
+fieldset {
+    margin: 0;
+    padding: em(2) em(2);
+    border: 1px solid clr(text, trans);
+}
+
+.container {
+    padding: em(2) em(2);
+    background-color: clr(white);
+}
+
+.table {
+    $t: &;
+    border-collapse: collapse;
+    border-top-left-radius: $br_1;
+    border-top-right-radius: $br_1;
+    overflow: hidden;
+    width: 100%;
+
+    &__td {
+        padding: em(2);
+    }
+
+    &__thead,
+    caption {
+        background-color: clr(secondary);
+    }
+
+    caption {
+        padding: em(2);
+        text-align: left;
+        font-weight: 600;
+        display: none;
+    }
+
+    &__tbody {
+        background-color: clr(white);
+
+        #{$t} {
+            &__tr {
+                border-bottom: 1px solid clr(secondary);
+            }
+        }
+    }
+}

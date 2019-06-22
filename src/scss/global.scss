@@ -1,0 +1,48 @@
+.g {
+    &-title__l {
+        position: relative;
+        padding-left: 30px;
+        padding-bottom: em(1);
+        padding-top: em(1);
+        margin: em(2) 0;
+
+        &-line {
+            background-color: clr(secondary);
+            position: relative;
+            z-index: 1;
+            padding-right: 20px;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 7px;
+            height: auto;
+            display: flex;
+            background-color: clr(text, trans);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            right: 0;
+            margin: auto;
+            height: 2px;
+            background-color: clr(text, trans);
+            display: block;
+            width: auto;
+        }
+    }
+
+    &-fieldset {
+        margin: 0;
+        padding: em(3) em(2);
+        border: 1px solid clr(text, trans);
+    }
+}

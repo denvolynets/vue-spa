@@ -1,0 +1,19 @@
+@function clr($color-name, $color-variant: base) {
+    @return map-get(map-get($colors, $color-name), $color-variant);
+}
+
+@for $i from 1 through 10 {
+    $val: $margin-padding / $fsz_main * $i;
+    $m_em: append($m_em, $val + em);
+    $m_rem: append($m_rem, $val + rem);
+}
+
+@function em-parent($fs, $m_em) {
+    $m_px: ($m_em / 1em) * ($fsz_main / 1px);
+    $fsm_px: ($fsz_main / 1px) * ($fs / 1em);
+    @return $m_px / $fsm_px+em;
+}
+
+@function em($step) {
+    @return nth($m_em, $step)
+}

@@ -1,0 +1,11 @@
+.g-grid {
+    width: 100%;
+    max-width: $grid-width + $grid-gutter;
+    margin: 0 auto;
+    padding-left: $grid-gutter/2;
+    padding-right: $grid-gutter/2;
+
+    &_lg {
+        max-width: 1600px;
+    }
+}

@@ -1,0 +1,73 @@
+$colors: (
+    primary: (
+        base: #4973FF,
+        light: lighten(#4973FF, 5%),
+        dark: darken(#4973FF, 15%),
+        trans: transparentize(#4973FF, 0.5)
+    ),
+    secondary: (
+        base: #F1F3F6,
+        light: lighten(#F1F3F6, 15%),
+        dark: darken(#F1F3F6, 15%),
+        dark_h: darken(#F1F3F6, 25%),
+        trans: transparentize(#F1F3F6, 0.5)
+    ),
+    text: (
+        base: #7A8398,
+        light: #919191,
+        trans: #E4E6E9
+    ),
+    white: (
+        base: #fff
+    ),
+    dark: (
+        base: #000,
+        light: #323332
+    ),
+    error: (
+        base: #ff0000
+    ),
+    success: (
+        base: #06c406
+    )
+);
+
+$ff_main: 'Avenir', Helvetica, Arial, sans-serif;
+$fsz_main:16px;
+$margin-padding:10px;
+$width_xs:767px;
+$width_md:1024px;
+$width_lg:1169px;
+
+$m_em:() !global;
+$m_rem:() !global;
+
+$trans:.3s ease-in-out;
+
+$br_1:5px;
+
+$grid-width:1200px;
+$grid-gutter:40px;
+
+$fsz_h1:2.25em;
+$fsz_h2:1.5em;
+$fsz_h3:1.125em;
+$fsz_h4:1em;
+$fsz_h5:1em;
+$fsz_h6:0.75em;
+$fsz_small:0.85em;
+
+%h1, %h2, %h3, %h4, %h5, %h6{
+    margin:0 0 em(2);
+    line-height:1.2;
+    font-weight:300;
+}
+
+%h1{ font-size:$fsz_h1; }
+%h2{ font-size:$fsz_h2; font-weight:400; }
+%h3{ font-size:$fsz_h3; font-weight:500; }
+%h4{ font-size:$fsz_h4; font-weight:400; }
+%h5{ font-size:$fsz_h5; }
+%h6{ font-size:$fsz_h6; }
+
+$lh_main:1.2;
