@@ -14,7 +14,7 @@
 <script>
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
 	components: {
 		Loading
@@ -22,10 +22,14 @@ export default {
 	computed: {
 		...mapState(['S_LOADING'])
 	},
+	methods: {
+		...mapMutations(['M_LOADING'])
+	},
 	created() {
 		window.Axios.interceptors.response.use(null, (error) => {
 			if (error) {
 				this.$toast.error(`An unknown error has occurred.`, 'Error');
+				this.M_LOADING(false);
 			}
 		});
 	}

@@ -21,6 +21,8 @@
 							:invoicesItem="item",
 							:invoicesItemTitles="S_INVOICES_LIST_TITLES"
 						).table__tr
+						.table__tr(v-if="S_INVOICES_LIST.length === 0")
+							td.table__td Nothing found
 </template>
 
 <script>
