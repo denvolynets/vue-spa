@@ -96,7 +96,8 @@ export default {
 		...mapState(MODULES.invoices, [
 			'S_INVOICES_ITEM',
 			'S_INVOICES_LIST'
-		])
+		]),
+		...mapState(['S_LOADING'])
 	},
 	methods: {
 		...mapActions(MODULES.invoices, [
@@ -135,7 +136,7 @@ export default {
 			if (this.typeAdd) return;
 
 			const item = { ...this.S_INVOICES_ITEM };
-
+			if (!this.S_LOADING && !item.date_created) this.$router.push({ name: '404' });
 			Object.keys(this.formData).map((key) => {
 				if (key.includes('date')) item[key] = item[key] && pickerDate(item[key]);
 				this.formData[key] = item[key];
