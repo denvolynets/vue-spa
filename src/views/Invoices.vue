@@ -109,6 +109,10 @@ export default {
 					&:nth-child(3) {
 						min-width: 100px;
 					}
+					
+					&:last-child {
+						min-width: 0;
+					}
 				}
 			}
 

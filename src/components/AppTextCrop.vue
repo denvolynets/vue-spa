@@ -54,9 +54,11 @@ export default {
 <style lang="scss">
     .app-text-crop {
 		word-break: break-all;
-		
+
         a {
             border-bottom: 1px solid clr(primary);
+			word-break: break-word;
+			white-space: nowrap;
 
             &:hover {
                 border-bottom-color: transparent;
