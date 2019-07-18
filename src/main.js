@@ -14,6 +14,8 @@ import AppIcon from '@/components/AppIcon';
 import AppBtn from '@/components/AppBtn';
 import AppField from '@/components/AppField';
 
+import * as helpers from '@/scripts/helpers';
+
 Vue.component('AppIcon', AppIcon);
 Vue.component('AppBtn', AppBtn);
 Vue.component('AppField', AppField);
@@ -30,6 +32,7 @@ window.Axios = Axios;
 window.Axios.defaults.baseURL = 'http://localhost:3000/';
 
 Vue.config.productionTip = false;
+Vue.prototype.$helpers = helpers;
 
 new Vue({
 	router,

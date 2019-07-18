@@ -12,6 +12,5 @@ export default new Vuex.Store({
 		M_LOADING(state, payload) {
 			state.S_LOADING = payload;
 		}
-	},
-	actions: {}
+	}
 });

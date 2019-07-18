@@ -1,7 +1,7 @@
-<script>
+<script type="text/jsx">
 export default {
+	name: 'AppBtn',
 	render(h) {
-		const BtnTag = this.tagName;
 		const AttrsButton = { class: this.classObject };
 		const AttrsIcon = {
 			props: {
@@ -10,10 +10,10 @@ export default {
 		};
 
 		return (
-			<BtnTag to={this.to} class="app-btn" {...AttrsButton}>
+			<this.tagName to={this.to} class="app-btn" {...AttrsButton}>
 				<span class="app-btn__title">{this.$slots.default}</span>
 				{this.iconName && <AppIcon {...AttrsIcon}/>}
-			</BtnTag>
+			</this.tagName>
 		);
 	},
 	props: {

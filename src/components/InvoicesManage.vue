@@ -10,7 +10,7 @@
 						v-validate="'required'",
 						iconName="settings",
 						readonly,
-						@click="numberGenerate",
+						@click="formData.number = $helpers.numberGenerate(S_INVOICES_LIST, typeAdd)",
 						:color="!typeAdd ? 'disabled': ''",
 						data-vv-as="Number"
 					)
@@ -60,7 +60,6 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import { formValidate } from '@/mixins';
-import { pickerDate } from '@/scripts/functions';
 import { MODULES } from '@/scripts/constants';
 
 export default {
@@ -101,63 +100,38 @@ export default {
 	},
 	methods: {
 		...mapActions(MODULES.invoices, [
-			'A_INVOICES_ADD_NEW',
-			'A_INVOICES_EDIT'
+			'A_INVOICES_MANAGE'
 		]),
-		numberGenerate() {
-			if (!this.typeAdd) return;
-
-			const maximum = 999999;
-			const minimum = 100000;
-			const randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-			const invoiceNumber = `INV-${randomnumber}`;
-
-			if (this.S_INVOICES_LIST.find(item => item.number === invoiceNumber)) {
-				this.numberGenerate();
-				return;
-			}
-			this.formData.number = invoiceNumber;
-		},
-		idGenerate() {
-			const id = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11)
-				.replace(/[018]/g, c =>
-					(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
-						.toString(16));
-
-			if (this.S_INVOICES_LIST.find(item => item.id === id)) {
-				this.idGenerate();
-				return;
-			}
-
-			this.formData.id = id;
-			return id;
-		},
 		setFormData() {
-			if (this.typeAdd) return;
-
 			const item = { ...this.S_INVOICES_ITEM };
+			
+			if (this.typeAdd) return;
 			if (!this.S_LOADING && !item.date_created) this.$router.push({ name: '404' });
+			
 			Object.keys(this.formData).map((key) => {
-				if (key.includes('date')) item[key] = item[key] && pickerDate(item[key]);
+				if (key.includes('date')) item[key] = item[key] && this.$helpers.pickerDate(item[key]);
 				this.formData[key] = item[key];
 			});
 		},
 		invoiceSave() {
+			const data = this.formData;
+			
+			if (this.typeAdd) {
+				data.date_created = new Date();
+				data.id = this.$helpers.idGenerate(this.S_INVOICES_LIST);
+				data.typeManage = 'add';
+				this.formData.id = this.$helpers.idGenerate(this.S_INVOICES_LIST);
+			} else {
+				data.typeManage = 'edit';
+			}
+			
 			this.$validator.validateAll().then((result) => {
 				if (!result) {
 					this.errorsFields(false);
 					return;
 				}
-
-				const data = this.formData;
-				const dispatchName = this.typeAdd ? 'A_INVOICES_ADD_NEW' : 'A_INVOICES_EDIT';
-
-				if (this.typeAdd) {
-					data.date_created = new Date();
-					data.id = this.idGenerate();
-				}
-
-				this[dispatchName](data).then(() => {
+				
+				this.A_INVOICES_MANAGE(data).then(() => {
 					this.$router.push({ name: 'InvoicesList' });
 				});
 			});

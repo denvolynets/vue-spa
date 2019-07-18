@@ -11,7 +11,7 @@ import { formValidate } from '@/mixins';
 import { MODULES } from '@/scripts/constants';
 
 export default {
-	name: 'Invouces',
+	name: 'Invoices',
 	mixins: [formValidate],
 	created() {
 		this.A_INVOICES_LIST();

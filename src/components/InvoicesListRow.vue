@@ -32,9 +32,11 @@
 import { mapActions } from 'vuex';
 import AppTextCrop from '@Components/AppTextCrop';
 import { MODULES } from '@/scripts/constants';
+import { invoicesDelete } from '@/mixins';
 
 export default {
 	name: 'InvoicesListRow',
+	mixins: [invoicesDelete],
 	components: { AppTextCrop },
 	props: {
 		invoicesItem: {
@@ -48,47 +50,8 @@ export default {
 	},
 	methods: {
 		...mapActions(MODULES.invoices, [
-			'A_INVOICES_DELETE'
-		]),
-		invoicesDelete(invoicesItem) {
-			this.$toast.show(`You are sure that you want to delete the invoice <strong>№ ${invoicesItem.number}</strong>?`, 'User,', {
-				theme: 'dark',
-				position: 'center',
-				timeout: 20000,
-				overlay: true,
-				class: 'toast_big',
-				layout: 2,
-				progressBarColor: 'rgb(0, 255, 184)',
-				buttons: [
-					[
-						'<button>Yes</button>',
-						(instance, toast) => {
-							instance.hide(
-								{
-									transitionOut: 'fadeOutUp'
-								},
-								toast,
-								'buttonName'
-							);
-							this.A_INVOICES_DELETE(invoicesItem);
-						},
-						true
-					],
-					[
-						'<button>No</button>',
-						(instance, toast) => {
-							instance.hide(
-								{
-									transitionOut: 'fadeOutUp'
-								},
-								toast,
-								'buttonName'
-							);
-						}
-					]
-				]
-			});
-		}
+			'A_INVOICES_MANAGE'
+		])
 	}
 };
 </script>

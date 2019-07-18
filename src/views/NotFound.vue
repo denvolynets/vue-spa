@@ -7,11 +7,12 @@
 <script>
 import { mapMutations } from 'vuex';
 export default {
-	methods: {
-		...mapMutations(['M_LOADING'])
-	},
+	name: 'NotFound',
 	created() {
 		this.M_LOADING(false);
+	},
+	methods: {
+		...mapMutations(['M_LOADING'])
 	}
 };
 </script>

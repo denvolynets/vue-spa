@@ -1,10 +1,9 @@
-<script>
+<script type="text/jsx">
 export default {
 	name: 'AppTextCrop',
 	render(h) {
 		const checkLength = this.crop && this.text.length > this.maxLength;
 		const buttonShowMore = <a href="javascript:void(0)" onClick={this.btnToggleHandle}>{this.btnToggleText}</a>;
-
 		const text = !this.showText && checkLength ? this.cropText.substring(0, this.maxLength) + `... ` : this.text;
 
 		return(
@@ -20,7 +19,7 @@ export default {
 		},
 		text: {
 			type: String,
-			default: 'default text',
+			default: 'default text',                                                             
 			required: true
 		},
 		maxLength: {
@@ -28,8 +27,8 @@ export default {
 			default: 150
 		},
 		buttonLabel: {
-			type: String,
-			default: 'more'
+			type: Array,
+			default: () => ['more', 'less']
 		}
 	},
 	data() {
@@ -45,7 +44,7 @@ export default {
 	},
 	computed: {
 		btnToggleText() {
-			return `(${!this.showText ? 'show ' + this.buttonLabel : 'hide ' + this.buttonLabel})`;
+			return `(${!this.showText ? this.buttonLabel[0] : this.buttonLabel[1]})`;
 		}
 	}
 };

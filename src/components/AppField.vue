@@ -1,7 +1,6 @@
-<script>
+<script type="text/jsx">
 import AppIcon from '@Components/AppIcon';
 import Cleave from 'cleave.js';
-import { formatDate } from '@/scripts/functions';
 
 export default {
 	name: 'AppField',
@@ -108,9 +107,8 @@ export default {
 		if (!this.$refs.masked) return;
 
 		const maskedElement = this.$refs.masked.$el;
-
 		this.calendarInput = maskedElement.querySelector('input');
-		const c = new Cleave(this.calendarInput, {
+		const cleave = new Cleave(this.calendarInput, {
 			date: true,
 			datePattern: ['d', 'm', 'Y'],
 			delimiter: '.'
@@ -118,7 +116,7 @@ export default {
 	},
 	computed: {
 		inputListeners: function() {
-			var vm = this;
+			let vm = this;
 			return Object.assign({},
 				this.$listeners,
 				{
@@ -130,7 +128,7 @@ export default {
 					},
 					input: function(event) {
 						if (vm.type === 'calendar') {
-							vm.calendarInput.value = event && formatDate(event);
+							vm.calendarInput.value = event && vm.$helpers.formatDate(event);
 							vm.$emit('input', event);
 							return;
 						}
@@ -168,7 +166,7 @@ export default {
             padding: em(1) em(2);
             outline: none;
             border: 1px solid clr(text, base);
-            transition: all $trans;
+			transition: all $trans;
             width: 100%;
             box-sizing: border-box;
 			border-radius: $br_1;
